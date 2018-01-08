@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.dao.MovieDecDao">
+ 	 <insert id="insert" parameterType="MovieDec">
+  		insert into moviedec (mid, decs ,score) values( #{mid}, #{decs}, #{score})
+  	 </insert>
+  	 <select id="select" parameterType="MovieDec" resultType="MovieDec">
+  	 	
+  	 	select * from moviedec 
+  	 	<where>
+  	 		<if test="mid != null">
+  	 			and mid = #{mid}
+  	 		</if>
+  	 	</where>
+  	 </select>
+  
+  	 <delete id="delete" parameterType="MovieDec">
+  	 	delete from MovieDec where mid =#{mid}
+  	 
+  	 </delete>
+  
+  </mapper>

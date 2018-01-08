@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<settings>
+	<!--开启驼峰映射  -->
+	<setting name="mapUnderscoreToCamelCase" value="true"/>
+	<!--输出sql语句  -->
+	<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<!--配置包的别名  -->
+	<typeAliases>
+	<package name="com.modle"/>
+	
+	</typeAliases>
+		<!--环境，用来配置数据源，构建sqlsessionFactory  -->
+  <environments default="development">
+ 		 <!--一个数据源   -->
+    <environment id="development">
+    <!--用于事务管理，但是一般交给spring管理  -->
+      <transactionManager type="JDBC"/>
+      <!--数据源  连接池方式是框架本身的实现，不依赖于c3p0这些外部jar包-->
+      <dataSource type="POOLED">
+      <!--驱动  -->
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/imovie?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <!-- 
+  	项目的所有额mapper ，都需要在这进行配置(注册)相当进行关联
+  	写的是mapper文件的完全限定名，多个包路径之间使用/连接，而不是.
+  
+  
+   -->
+  <mappers>
+  <mapper resource="com/dao/MovieTableDao.xml"/>
+  <mapper resource="com/dao/MovieDetailDao.xml"/>
+  <mapper resource="com/dao/MovieDecDao.xml"/>
+  </mappers> 
+</configuration>

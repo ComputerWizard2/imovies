@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.dao.MovieDetailDao">
+  
+  <select id="select" resultType="MovieDetail" >
+  	select * from moviedetailtable 
+  	<where>
+  		<if test="movieid !=null">
+  		and movieid = #{movieid}
+  		</if>
+  	</where>
+  
+  
+  </select>
+  <insert id="insert" parameterType="MovieDetail">
+  	insert into moviedetailtable (keyword) values (#{keyword})
+  
+  </insert>
+  <delete id="delete" parameterType="MovieDetail">
+  	delete from  moviedetailtable where id = #{id}
+  
+  </delete>
+  </mapper>

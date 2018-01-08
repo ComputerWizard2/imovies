@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.dao.MovieTableDao">
+  	
+  	<select id="select" resultType="MovieTable" parameterType="MovieTable">
+  	select * from movietable
+  	<where>
+  		<if test="moviename!=null and moviename !=''">
+  			and  moviename like  concat('%',#{moviename},'%')
+  		</if>
+  		<if test=" mid != null and mid !=0 ">
+  			and mid =#{mid}
+  		</if>
+  	</where>
+  	</select>
+  <insert id="insert" parameterType="MovieTable" >
+  	insert into movietable(moviename,time,imagepath,saveimagepath,score,performer,director)
+  	values(#{moviename},#{time},#{imagepath},#{saveimagepath},#{score},#{performer},#{director})
+  </insert>
+  <update id="update" parameterType="MovieTable" >
+  	update movietable
+  	<set>
+  	<if test="moviename !=null and moviename !=''">moviename = #{moviename},</if>
+  	<if test="time !=null and time !=''">time = #{time},</if>
+  	<if test="imagepath !=null and imagepath !=''">imagepath = #{imagepath},</if>
+  	<if test="saveimagepath !=null and saveimagepath !=''">saveimagepath = #{saveimagepath},</if>
+  	<if test="score !=null and score !=''">score = #{score},</if>
+  	<if test="performer !=null and performer !=''">performer = #{performer},</if>
+  	<if test="director !=null and director !=''">director = #{director},</if>
+  	</set>
+  	where mid =#{mid}
+  	</update>
+  	<delete id="delete" parameterType="MovieTable">
+  		delete from movietable where mid =#{mid}
+  	</delete>
+ 
+  </mapper>
